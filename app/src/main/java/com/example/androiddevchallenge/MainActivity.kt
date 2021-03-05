@@ -18,18 +18,32 @@ package com.example.androiddevchallenge
 import android.os.Bundle
 import androidx.activity.compose.setContent
 import androidx.appcompat.app.AppCompatActivity
+import androidx.compose.foundation.Image
+import androidx.compose.foundation.isSystemInDarkTheme
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.absolutePadding
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.material.Icon
+import androidx.compose.material.IconButton
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
-import androidx.compose.material.Text
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.ExpandMore
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
 import com.example.androiddevchallenge.ui.theme.MyTheme
+import com.example.androiddevchallenge.ui.theme.topRounded
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            MyTheme {
+            MyTheme(darkTheme = isSystemInDarkTheme()) {
                 MyApp()
             }
         }
@@ -39,8 +53,29 @@ class MainActivity : AppCompatActivity() {
 // Start building your app here!
 @Composable
 fun MyApp() {
-    Surface(color = MaterialTheme.colors.background) {
-        Text(text = "Ready... Set... GO!")
+    Surface(
+        color = MaterialTheme.colors.background,
+        shape = topRounded,
+        elevation = 20.dp,
+        modifier = Modifier.absolutePadding(top = 16.dp)
+    ) {
+        Column {
+            IconButton(onClick = { }, modifier = Modifier.fillMaxWidth()) {
+                Icon(imageVector = Icons.Default.ExpandMore, contentDescription = null)
+            }
+            Row(
+                horizontalArrangement = Arrangement.SpaceBetween,
+                modifier = Modifier.fillMaxWidth()
+            ) {
+                Column {}
+                Image(
+                    painter = if (isSystemInDarkTheme()) painterResource(id = R.drawable.ic_watch_white)
+                    else painterResource(id = R.drawable.ic_watch_black),
+                    contentDescription = null
+                )
+                Column {}
+            }
+        }
     }
 }
 

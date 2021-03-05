@@ -32,7 +32,10 @@ buildscript {
 
 plugins {
     id 'com.diffplug.spotless' version '5.7.0'
+    id("org.jmailen.kotlinter") version "3.3.0"
 }
+
+
 
 subprojects {
     repositories {
@@ -41,6 +44,7 @@ subprojects {
     }
 
     apply plugin: 'com.diffplug.spotless'
+    apply plugin: 'org.jmailen.kotlinter'
     spotless {
         kotlin {
             target '**/*.kt'
