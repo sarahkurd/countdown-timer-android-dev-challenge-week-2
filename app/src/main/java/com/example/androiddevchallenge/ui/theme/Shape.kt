@@ -26,3 +26,4 @@ val shapes = Shapes(
 )
 
 val topRounded = RoundedCornerShape(30.dp, 30.dp, 0.dp, 0.dp)
+val myCircle = RoundedCornerShape(50)
